@@ -1,4 +1,3 @@
-from cmath import phase
 from download import download_exam
 import argparse
 
