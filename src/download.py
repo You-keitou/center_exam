@@ -5,27 +5,29 @@ from glob import glob
 
 def download_exam(file_dir):
 	subject_name = ["sugaku-1a.pdf","sugaku-2b.pdf"]
+	
+	host_name = "https://www.toshin.com/center/"
 	old_path = "/pdf/q/"
 	new_path = "/q/"
-	kyotsu_path = "/data/285/"
-	host_name = "https://www.toshin.com/center/"
-	host_name_kyotu = "https://www.toshin.com/kyotsutest/"
 
 	download_url_name = []
-	for fiscal_year in range(2008,2022,1):
+	for fiscal_year in range(2008,2021,1):
 		for sub in subject_name:
 			if fiscal_year < 2012:
-				download_url_name.append((host_name + str(fiscal_year) + old_path + sub, str(fiscal_year) + "_" + sub))
+				url = host_name + str(fiscal_year) + old_path + sub
 			elif fiscal_year < 2020:
-				download_url_name.append((host_name + str(fiscal_year) + new_path + sub, str(fiscal_year) + "_" + sub))
+				url = host_name + str(fiscal_year) + new_path + sub
 			elif fiscal_year == 2020 :
-				download_url_name.append((host_name.rstrip('/') + new_path + sub, str(fiscal_year) + "_" + sub))
-
+				url = host_name.rstrip('/') + new_path + sub
+			file_name = str(fiscal_year) + "_" + sub
+			download_url_name.append((url, file_name))
+	
 	file_list = []
 	for url, file_name in download_url_name:
 		print(file_name + "をダウンロードしています")
 		if len(glob(file_dir+'/'+file_name)):
 			print("すでにダウンロードされています")
+			file_list.append(file_name)
 			continue
 		print(url+"にアクセスしています..")
 
