@@ -1,5 +1,5 @@
-from download import download_exam
-from split import split
+from src.download import download_exam
+from src.split import split
 import argparse
 
 def main():

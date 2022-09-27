@@ -11,18 +11,18 @@ def download_exam(file_dir):
 	host_name = "https://www.toshin.com/center/"
 	host_name_kyotu = "https://www.toshin.com/kyotsutest/"
 
-	download_path_name = []
+	download_url_name = []
 	for fiscal_year in range(2008,2022,1):
 		for sub in subject_name:
 			if fiscal_year < 2012:
-				download_path_name.append((host_name + str(fiscal_year) + old_path + sub, str(fiscal_year) + "_" + sub))
+				download_url_name.append((host_name + str(fiscal_year) + old_path + sub, str(fiscal_year) + "_" + sub))
 			elif fiscal_year < 2020:
-				download_path_name.append((host_name + str(fiscal_year) + new_path + sub, str(fiscal_year) + "_" + sub))
+				download_url_name.append((host_name + str(fiscal_year) + new_path + sub, str(fiscal_year) + "_" + sub))
 			elif fiscal_year == 2020 :
-				download_path_name.append((host_name.rstrip('/') + new_path + sub, str(fiscal_year) + "_" + sub))
+				download_url_name.append((host_name.rstrip('/') + new_path + sub, str(fiscal_year) + "_" + sub))
 
 	file_list = []
-	for url, file_name in download_path_name:
+	for url, file_name in download_url_name:
 		print(file_name + "をダウンロードしています")
 		if len(glob(file_dir+'/'+file_name)):
 			print("すでにダウンロードされています")
