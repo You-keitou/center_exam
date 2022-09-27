@@ -1,4 +1,5 @@
 from download import download_exam
+from split import split
 import argparse
 
 def main():
@@ -10,6 +11,9 @@ def main():
 		save_dir = args.d
 	else:
 		save_dir = "./"
-	download_exam(save_dir)
+	
+	pdf_list = download_exam(save_dir)
+	# split(pdf_list,save_dir)
+
 if __name__ == "__main__":
 	main()
